@@ -14,23 +14,25 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text('Material App Bar'),
           ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: double.infinity,
-                child: Card(
-                  child: Container(
-                    child: Text('Chart'),
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  child: Card(
+                    child: Container(
+                      child: Text('Chart'),
+                    ),
+                    color: Colors.blue,
+                    elevation: 5,
                   ),
-                  color: Colors.blue,
-                  elevation: 5,
                 ),
-              ),
-              UserTransaction(),
-              
-            ],
+                UserTransaction(),
+                
+              ],
+            ),
           )),
     );
   }
