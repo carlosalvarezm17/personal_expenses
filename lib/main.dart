@@ -10,6 +10,11 @@ class MyApp extends StatelessWidget {
     Transaction(id: 't2', title: 'Food', amount: 20, date: DateTime.now()),
   ];
 
+  //String titleInput;
+  //String amountInput;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,9 +43,27 @@ class MyApp extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      TextField(decoration: InputDecoration(labelText: 'Title'),),
-                      TextField(decoration: InputDecoration(labelText: 'Amount'),),
-                      FlatButton(child: Text('Add'), onPressed: () {}, textColor: Colors.purple,)
+                      TextField(
+                        decoration: InputDecoration(labelText: 'Title'),
+                        controller: titleController,
+                       /* onChanged: (v) {
+                          titleInput = v;
+                        },*/
+                      ),
+                      TextField(
+                        decoration: InputDecoration(labelText: 'Amount'),
+                        controller: amountController,
+                        /*onChanged: (v) {
+                          amountInput = v;
+                        },*/
+                      ),
+                      FlatButton(
+                        child: Text('Add'),
+                        textColor: Colors.purple,
+                        onPressed: () {
+                          print(titleController.text);
+                        },
+                      )
                     ],
                   ),
                 ),
