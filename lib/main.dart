@@ -4,7 +4,6 @@ import 'package:personal_expenses/transaction.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   final List<Transaction> transaction = [
     Transaction(id: 't1', title: 'SRI', amount: 60, date: DateTime.now()),
     Transaction(id: 't2', title: 'Food', amount: 20, date: DateTime.now()),
@@ -19,19 +18,25 @@ class MyApp extends StatelessWidget {
             title: Text('Material App Bar'),
           ),
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
                 width: double.infinity,
                 child: Card(
-                  child: Container(child: Text('Chart'),),
+                  child: Container(
+                    child: Text('Chart'),
+                  ),
                   color: Colors.blue,
                   elevation: 5,
                 ),
               ),
-              Card(
-                child: Text('List of tx'),
+              Column(
+                children: transaction.map((tx) {
+                  return Card(
+                    child: Text(tx.title),
+                  );
+                }).toList(),
               )
             ],
           )),
