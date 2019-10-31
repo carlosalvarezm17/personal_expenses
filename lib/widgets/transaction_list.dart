@@ -3,49 +3,52 @@ import 'package:intl/intl.dart';
 import 'package:personal_expenses/models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  
   final List<Transaction> userTransaction;
 
   TransactionList(this.userTransaction);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: userTransaction.map((tx) {
-        return Card(
-          elevation: 5,
-          child: Row(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.purple, width: 2)),
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  '\$${tx.amount}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.purple),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+        height: 220,
+        child: ListView.builder(
+          itemBuilder: (ctx, i){
+            return Card(
+              elevation: 5,
+              child: Row(
                 children: <Widget>[
-                  Text(
-                    tx.title,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.purple, width: 2)),
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      '\$${userTransaction[i].amount}',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple),
+                    ),
                   ),
-                  Text(
-                    DateFormat.yMMMd().format(tx.date),
-                    style: TextStyle(color: Colors.grey),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        userTransaction[i].title,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                      Text(
+                        DateFormat.yMMMd().format(userTransaction[i].date),
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        );
-      }).toList(),
-    );
+            );
+          },
+          itemCount: userTransaction.length,
+        ));
   }
 }
