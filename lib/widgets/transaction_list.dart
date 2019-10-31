@@ -10,9 +10,10 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 220,
+        height: MediaQuery.of(context).size.height*0.50,
         child: ListView.builder(
-          itemBuilder: (ctx, i){
+          itemCount: userTransaction.length,
+          itemBuilder: (ctx, i) {
             return Card(
               elevation: 5,
               child: Row(
@@ -20,7 +21,8 @@ class TransactionList extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Theme.of(context).primaryColor, width: 2)),
+                        border: Border.all(
+                            color: Theme.of(context).primaryColor, width: 2)),
                     padding: EdgeInsets.all(10),
                     child: Text(
                       '\$${userTransaction[i].amount.toStringAsFixed(2)}',
@@ -35,8 +37,7 @@ class TransactionList extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         userTransaction[i].title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                        style: Theme.of(context).textTheme.title,
                       ),
                       Text(
                         DateFormat.yMMMd().format(userTransaction[i].date),
@@ -47,8 +48,7 @@ class TransactionList extends StatelessWidget {
                 ],
               ),
             );
-          },
-          itemCount: userTransaction.length,
+          },          
         ));
   }
 }
