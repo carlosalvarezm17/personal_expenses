@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:personal_expenses/models/transaction.dart';
 import 'package:personal_expenses/widgets/chart.dart';
 import 'package:personal_expenses/widgets/new_transaction.dart';
 import 'package:personal_expenses/widgets/transaction_list.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -120,7 +127,10 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Chart(_recentTransactions),
             ),
             Container(
-              height: (MediaQuery.of(context).size.height - _appBar.preferredSize.height - MediaQuery.of(context).padding.top) * 0.65,
+              height: (MediaQuery.of(context).size.height -
+                      _appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.65,
               child: TransactionList(_userTransaction, _deleteTransaction),
             ),
           ],
