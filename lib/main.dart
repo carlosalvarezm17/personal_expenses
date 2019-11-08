@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final _isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    final PreferredSizeWidget _appBar = !Platform.isIOS
+    final PreferredSizeWidget _appBar = Platform.isIOS
         ? CupertinoNavigationBar(
             middle: Text('Personal Expenses'),
             trailing: Row(
@@ -199,7 +199,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    return !Platform.isIOS
+    return Platform.isIOS
         ? CupertinoPageScaffold(
             child: Material(child: _pageBody),
             navigationBar: _appBar,
