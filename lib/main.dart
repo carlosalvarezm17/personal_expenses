@@ -160,7 +160,10 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Show Chart'),
+                  Text(
+                    'Show Chart',
+                    style: Theme.of(context).textTheme.title,
+                  ),
                   Switch.adaptive(
                     activeColor: Theme.of(context).accentColor,
                     value: _showChart,
@@ -198,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return !Platform.isIOS
         ? CupertinoPageScaffold(
-            child: _pageBody,
+            child: Material(child: _pageBody),
             navigationBar: _appBar,
           )
         : Scaffold(
