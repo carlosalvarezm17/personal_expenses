@@ -150,47 +150,49 @@ class _MyHomePageState extends State<MyHomePage> {
       child: TransactionList(_userTransaction, _deleteTransaction),
     );
 
-    var _pageBody = SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          if (_isLandscape)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Show Chart'),
-                Switch.adaptive(
-                  activeColor: Theme.of(context).accentColor,
-                  value: _showChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _showChart = val;
-                    });
-                  },
-                ),
-              ],
-            ),
-          if (!_isLandscape)
-            Container(
-              height: (mediaQuery.size.height -
-                      _appBar.preferredSize.height -
-                      mediaQuery.padding.top) *
-                  0.35,
-              child: Chart(_recentTransactions),
-            ),
-          if (!_isLandscape) _txListWidget,
-          if (_isLandscape)
-            _showChart
-                ? Container(
-                    height: (mediaQuery.size.height -
-                            _appBar.preferredSize.height -
-                            mediaQuery.padding.top) *
-                        0.65,
-                    child: Chart(_recentTransactions),
-                  )
-                : _txListWidget
-        ],
+    var _pageBody = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            if (_isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('Show Chart'),
+                  Switch.adaptive(
+                    activeColor: Theme.of(context).accentColor,
+                    value: _showChart,
+                    onChanged: (val) {
+                      setState(() {
+                        _showChart = val;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            if (!_isLandscape)
+              Container(
+                height: (mediaQuery.size.height -
+                        _appBar.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    0.35,
+                child: Chart(_recentTransactions),
+              ),
+            if (!_isLandscape) _txListWidget,
+            if (_isLandscape)
+              _showChart
+                  ? Container(
+                      height: (mediaQuery.size.height -
+                              _appBar.preferredSize.height -
+                              mediaQuery.padding.top) *
+                          0.65,
+                      child: Chart(_recentTransactions),
+                    )
+                  : _txListWidget
+          ],
+        ),
       ),
     );
 
